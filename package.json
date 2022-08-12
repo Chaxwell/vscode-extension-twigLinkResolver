@@ -1,0 +1,55 @@
+{
+  "name": "twig-link-resolver",
+  "displayName": "Twig link resolver",
+  "description": "Allows you to open twig files by clicking on the generated links",
+  "author": "Chaxwell",
+  "license": "MIT-X11",
+  "version": "1.0.0-rc.0",
+  "main": "./out/extension",
+  "private": true,
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "configuration": {
+      "title": "Twig link resolver configuration",
+      "order": 0,
+      "properties": {
+        "twigLinkResolver.templatesRootPath": {
+          "type": "string",
+          "description": "The relative path to your twig templates folder",
+          "default": "templates"
+        },
+        "twigLinkResolver.languageFilter": {
+          "type": "array",
+          "description": "What languages are supported for the generated links",
+          "default": [
+            "php",
+            "html",
+            "twig"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      }
+    }
+  },
+  "engines": {
+    "vscode": "^1.32.0"
+  },
+  "scripts": {
+    "compile": "tsc -b",
+    "watch": "tsc -b -watch"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.45",
+    "@types/vscode": "^1.32.0",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
+    "eslint": "^8.21.0",
+    "typescript": "^4.7.4",
+    "vscode-languageclient": "^8.0.2"
+  }
+}
