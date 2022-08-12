@@ -8,7 +8,7 @@ It **does not** (yet) support multiple root folders to resolve your twig files.
 <br>
 
 ## Configuration
-Prepend the keys with the extension name : **twigLinkResolver** (e.g. `twigLinkResolver.templatesRootFolder`)
+Prepend the keys with the extension name : **twigLinkResolver** (e.g. `twigLinkResolver.templatesRootPath`)
 
 <br>
 <table>
