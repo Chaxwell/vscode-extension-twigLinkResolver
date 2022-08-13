@@ -7,6 +7,11 @@
   "version": "1.0.0-rc.0",
   "main": "./out/extension",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Chaxwell/vscode-extension-twigLinkResolver"
+  },
+  "publisher": "Chaxwell",
   "activationEvents": [
     "onStartupFinished"
   ],
