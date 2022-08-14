@@ -68,6 +68,14 @@ export const Main: Application = (context: vscode.ExtensionContext) => {
 
             let file = `${self.config.workspacePath}${path.sep}`;
             file += `${self.config.templatesRootPath}${path.sep}`;
+
+            if (self.config.bundleMode) {
+                const bundleName = filePath.substring(0, filePath.indexOf(path.sep));
+
+                // We insert the resources/views hierarchy.
+                filePath = filePath.replace(bundleName, `${bundleName}${path.sep}resources${path.sep}views`)
+            }
+
             file += `${filePath}`;
 
             return file;
