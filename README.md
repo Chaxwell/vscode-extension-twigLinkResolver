@@ -68,7 +68,7 @@ Prepend the keys with the extension name : **twigLinkResolver** (e.g. `twigLinkR
                 <b>bundleMode</b>
             </td>
             <td>
-                Should search for file in Symonfy-bundle-style hierarchy (Bundle/resources/views)
+                Should search for file in Symfony-bundle-style hierarchy (Bundle/resources/views)
             </td>
             <td>
                 false

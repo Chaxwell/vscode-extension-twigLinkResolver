@@ -40,7 +40,7 @@
         },
         "twigLinkResolver.bundleMode": {
           "type": "boolean",
-          "description": "Should search for file in Symonfy-bundle-style hierarchy (Bundle/resources/views)",
+          "description": "Should search for file in Symfony-bundle-style hierarchy (Bundle/resources/views)",
           "default": false
         }
       }
