@@ -1,9 +1,11 @@
 import * as vscode from 'vscode';
+import { Config } from './configuration';
 import { EXTENSION_NAME } from './definitions/configuration-definitions';
-import { loadDisposables } from './main';
+import { Main } from './main';
 
 export function activate(context: vscode.ExtensionContext) {
-    loadDisposables(context);
+    const main = Main(context);
+    main.loadDisposables();
 
     // When the configuration changes, we dispose and reload the subscriptions.
     vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
@@ -12,6 +14,7 @@ export function activate(context: vscode.ExtensionContext) {
         }
         
         context.subscriptions.forEach(disposable => disposable.dispose());
-        loadDisposables(context);
+        main.setConfig(Config());
+        main.loadDisposables();
     });
 };
