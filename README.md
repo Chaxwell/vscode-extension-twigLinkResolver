@@ -63,6 +63,20 @@ Prepend the keys with the extension name : **twigLinkResolver** (e.g. `twigLinkR
                 All existing language ids supported by Vscode
             </td>
         </tr>
+        <tr>
+            <td>
+                <b>bundleMode</b>
+            </td>
+            <td>
+                Should search for file in Symonfy-bundle-style hierarchy (Bundle/resources/views)
+            </td>
+            <td>
+                false
+            </td>
+            <td>
+                boolean
+            </td>
+        </tr>
     </tbody>
 </table>
 
