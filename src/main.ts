@@ -24,7 +24,7 @@ export const loadDisposables = (context: vscode.ExtensionContext) => {
  * @private
  */
 export const documentLinkProvider = (document: vscode.TextDocument, token: vscode.CancellationToken) => {
-    const regex = new RegExp(/.*['"]([\w\-\/:]+\.html\.twig)['"].*/, 'g');
+    const regex = new RegExp(/.*['"]([\w\-\/:]+(?:\.html)?\.twig)['"].*/, 'gi');
     const links: vscode.DocumentLink[] = [];
 
     for (let n = 0; n < document.lineCount; n++) {
