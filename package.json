@@ -4,7 +4,7 @@
   "description": "Allows you to open twig files by clicking on the generated links",
   "author": "Chaxwell",
   "license": "MIT-X11",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "./out/extension",
   "private": true,
   "repository": {
