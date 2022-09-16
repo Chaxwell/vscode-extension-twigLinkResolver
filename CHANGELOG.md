@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/Chaxwell/vscode-extension-twigLinkResolver/compare/1.0.1...v1.0.2) (2022-09-16)
+
+
+### Bug Fixes
+
+* compile changes ([a3d06ac](https://github.com/Chaxwell/vscode-extension-twigLinkResolver/commit/a3d06ac09b9337ed012b05db8a6f99ad9fbb516f))
+
 ## [1.0.1](https://github.com/Chaxwell/vscode-extension-twigLinkResolver/compare/1.0.0...1.0.1) (2022-08-13)
 
 
