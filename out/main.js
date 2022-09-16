@@ -20,7 +20,7 @@ exports.loadDisposables = loadDisposables;
  * @private
  */
 const documentLinkProvider = (document, token) => {
-    const regex = new RegExp(/.*['"]([\w\-\/:]+\.html\.twig)['"].*/, 'g');
+    const regex = new RegExp(/.*['"]([\w\-\/:]+(?:\.html)?\.twig)['"].*/, 'gi');
     const links = [];
     for (let n = 0; n < document.lineCount; n++) {
         const line = document.lineAt(n);
