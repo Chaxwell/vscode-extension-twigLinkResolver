@@ -7,7 +7,7 @@ import { getConfiguration } from './configuration';
  */
 export const loadDisposables = (context: vscode.ExtensionContext) => {
     const { languageFilter } = getConfiguration();
-    
+
     languageFilter.forEach(languageId => {
         context.subscriptions.push(
             vscode.languages.registerDocumentLinkProvider(
@@ -24,35 +24,41 @@ export const loadDisposables = (context: vscode.ExtensionContext) => {
  * @private
  */
 export const documentLinkProvider = (document: vscode.TextDocument, token: vscode.CancellationToken) => {
-    const regex = new RegExp(/.*['"]([\w\-\/:]+(?:\.html)?\.twig)['"].*/, 'gi');
+    const regex = new RegExp(/.*?['"](.+?\.twig)['"]/, 'gi');
     const links: vscode.DocumentLink[] = [];
 
     for (let n = 0; n < document.lineCount; n++) {
         const line = document.lineAt(n);
-        const matches = Array.from(line.text.matchAll(regex)).shift() ?? [];
+        const matches = Array.from(line.text.matchAll(regex));
 
         if (matches.length === 0) {
             continue;
         }
 
-        const wholeMatch = matches[0];
-        const groupMatch = matches[1];
-        const startPosition = wholeMatch.indexOf(groupMatch);
-        const endPosition = startPosition + groupMatch.length;
-        const range = new vscode.Range(
-            new vscode.Position(line.lineNumber, startPosition),
-            new vscode.Position(line.lineNumber, endPosition)
-        );
+        let contentVisited: string = "";
+        matches.forEach(match => {
+            const wholeMatch = match[0];
+            contentVisited += wholeMatch;
 
-        const uri = vscode.Uri.file(resolveFile(groupMatch));
-        const link = new vscode.DocumentLink(
-            range,
-            uri
-        );
+            const groupMatch = match[1];
+            const startPosition = contentVisited.lastIndexOf(groupMatch);
+            const endPosition = startPosition + groupMatch.length;
 
-        links.push(link);
+            const range = new vscode.Range(
+                new vscode.Position(line.lineNumber, startPosition),
+                new vscode.Position(line.lineNumber, endPosition)
+            );
+
+            const uri = vscode.Uri.file(resolveFile(groupMatch));
+            const link = new vscode.DocumentLink(
+                range,
+                uri
+            );
+
+            links.push(link);
+        });
     }
-    
+
     return links;
 };
 
@@ -70,4 +76,3 @@ export const resolveFile = (filePath: string): string => {
 
     return file;
 };
-

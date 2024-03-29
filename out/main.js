@@ -20,22 +20,26 @@ exports.loadDisposables = loadDisposables;
  * @private
  */
 const documentLinkProvider = (document, token) => {
-    const regex = new RegExp(/.*['"]([\w\-\/:]+(?:\.html)?\.twig)['"].*/, 'gi');
+    const regex = new RegExp(/.*?['"](.+?\.twig)['"]/, 'gi');
     const links = [];
     for (let n = 0; n < document.lineCount; n++) {
         const line = document.lineAt(n);
-        const matches = Array.from(line.text.matchAll(regex)).shift() ?? [];
+        const matches = Array.from(line.text.matchAll(regex));
         if (matches.length === 0) {
             continue;
         }
-        const wholeMatch = matches[0];
-        const groupMatch = matches[1];
-        const startPosition = wholeMatch.indexOf(groupMatch);
-        const endPosition = startPosition + groupMatch.length;
-        const range = new vscode.Range(new vscode.Position(line.lineNumber, startPosition), new vscode.Position(line.lineNumber, endPosition));
-        const uri = vscode.Uri.file((0, exports.resolveFile)(groupMatch));
-        const link = new vscode.DocumentLink(range, uri);
-        links.push(link);
+        let contentVisited = "";
+        matches.forEach(match => {
+            const wholeMatch = match[0];
+            contentVisited += wholeMatch;
+            const groupMatch = match[1];
+            const startPosition = contentVisited.lastIndexOf(groupMatch);
+            const endPosition = startPosition + groupMatch.length;
+            const range = new vscode.Range(new vscode.Position(line.lineNumber, startPosition), new vscode.Position(line.lineNumber, endPosition));
+            const uri = vscode.Uri.file((0, exports.resolveFile)(groupMatch));
+            const link = new vscode.DocumentLink(range, uri);
+            links.push(link);
+        });
     }
     return links;
 };
