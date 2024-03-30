@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.3](https://github.com/Chaxwell/vscode-extension-twigLinkResolver/compare/v1.0.2...v1.0.3) (2024-03-30)
+
+
+### Bug Fixes
+
+* [#6](https://github.com/Chaxwell/vscode-extension-twigLinkResolver/issues/6) can specify multiple paths to twig templates with aliases ([6a0c831](https://github.com/Chaxwell/vscode-extension-twigLinkResolver/commit/6a0c8312272311b28dc3b8c3eb2d1c41a3e77a8b))
+* [#7](https://github.com/Chaxwell/vscode-extension-twigLinkResolver/issues/7) match all links on the same line ([490d4ca](https://github.com/Chaxwell/vscode-extension-twigLinkResolver/commit/490d4cacfb8832bd46d37b086f979f9840e8fdf4))
+
 ## [1.0.2](https://github.com/Chaxwell/vscode-extension-twigLinkResolver/compare/1.0.1...v1.0.2) (2022-09-16)
 
 
