@@ -2,8 +2,6 @@
 
 This extension allows you to quickly open your twig file by clicking the links generated in your editor.
 
-It **does not** (yet) support multiple root folders to resolve your twig files.
-
 <br>
 <br>
 
