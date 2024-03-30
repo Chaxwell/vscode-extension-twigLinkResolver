@@ -49,11 +49,25 @@ exports.documentLinkProvider = documentLinkProvider;
  */
 const resolveFile = (filePath) => {
     const configuration = (0, configuration_1.getConfiguration)();
-    filePath = filePath.replace(/[\/:]/g, path.sep);
-    let file = `${configuration.workspacePath}${path.sep}`;
-    file += `${configuration.templatesRootPath}${path.sep}`;
-    file += `${filePath}`;
-    return file;
+    filePath = filePath.replace(/\//g, path.sep);
+    const matchExactNamespace = (filePath, nsLength, namespace) => {
+        return filePath.slice(0, nsLength + 1) === namespace + '/';
+    };
+    for (const { namespace, folderPath } of configuration.loaderPaths) {
+        const nsLength = namespace.length;
+        if (nsLength === 0) {
+            return `${configuration.workspacePath}${path.sep}${folderPath}${path.sep}${filePath}`;
+        }
+        if (!matchExactNamespace(filePath, nsLength, namespace)) {
+            continue;
+        }
+        const filePathToResolve = filePath.replace(`${namespace}`, folderPath);
+        return `${configuration.workspacePath}${path.sep}${filePathToResolve}`;
+    }
+    let result = `${configuration.workspacePath}${path.sep}`;
+    result += `${configuration.templatesRootPath}${path.sep}`;
+    result += `${filePath}`;
+    return result;
 };
 exports.resolveFile = resolveFile;
 //# sourceMappingURL=main.js.map

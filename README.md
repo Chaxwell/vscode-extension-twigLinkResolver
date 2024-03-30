@@ -31,15 +31,17 @@ Prepend the keys with the extension name : **twigLinkResolver** (e.g. `twigLinkR
     <tbody>
         <tr>
             <td>
-                <b>templatesRootPath</b>
+                <span style="text-decoration-line: line-through">templatesRootPath</span>
+                <br>
+                <b>deprecated, please move your root path to loaderPaths</b>
             </td>
-            <td>
+            <td style="text-decoration-line: line-through">
                 The relative path to your twig templates folder
             </td>
-            <td>
+            <td style="text-decoration-line: line-through">
                 "templates"
             </td>
-            <td>
+            <td style="text-decoration-line: line-through">
                 any
             </td>
         </tr>
@@ -51,16 +53,35 @@ Prepend the keys with the extension name : **twigLinkResolver** (e.g. `twigLinkR
                 What languages are supported for the generated links
             </td>
             <td>
-                [<br>
-                    "php",<br>
-                    "html",<br>
-                    "twig"<br>
-                ]
-                <br>
+                <pre>
+[
+    "php",
+    "html",
+    "twig"
+]
+</pre>
                 <i>To enable the generation in twig files you must enable the filters "html" and "twig"</i>
             </td>
             <td>
                 All existing language ids supported by Vscode
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>loaderPaths</b>
+            </td>
+            <td>
+                Allows you to specify multiple paths to your twig templates. Add an alias (eg. @App) bounded to a path (eg. src/AppBundle/Resources/views)
+            </td>
+            <td>
+                <pre>
+{
+    "": "templates",
+}</pre>
+            </td>
+            <td>
+                alias => string<br>
+                path: string (omit the final slash)
             </td>
         </tr>
     </tbody>
@@ -75,6 +96,7 @@ Prepend the keys with the extension name : **twigLinkResolver** (e.g. `twigLinkR
 
 ### Navigating files
 <img src="./resources/img/demo-navigation.gif">
+<img src="./resources/img/demo-navigation-alias.gif">
 
 <br>
 <br>

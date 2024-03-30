@@ -67,12 +67,31 @@ export const documentLinkProvider = (document: vscode.TextDocument, token: vscod
  */
 export const resolveFile = (filePath: string): string => {
     const configuration = getConfiguration();
+    filePath = filePath.replace(/\//g, path.sep);
 
-    filePath = filePath.replace(/[\/:]/g, path.sep);
+    const matchExactNamespace = (filePath: string, nsLength: number, namespace: string) => {
+        return filePath.slice(0, nsLength + 1) === namespace + '/'
+    }
 
-    let file = `${configuration.workspacePath}${path.sep}`;
-    file += `${configuration.templatesRootPath}${path.sep}`;
-    file += `${filePath}`;
+    for (const {namespace, folderPath} of configuration.loaderPaths) {
+        const nsLength = namespace.length;
 
-    return file;
+        if (nsLength === 0) {
+            return `${configuration.workspacePath}${path.sep}${folderPath}${path.sep}${filePath}`;
+        }
+
+        if (! matchExactNamespace(filePath, nsLength, namespace)) {
+            continue;
+        }
+
+        const filePathToResolve = filePath.replace(`${namespace}`, folderPath);
+
+        return `${configuration.workspacePath}${path.sep}${filePathToResolve}`;
+    }
+
+    let result = `${configuration.workspacePath}${path.sep}`;
+    result += `${configuration.templatesRootPath}${path.sep}`;
+    result += `${filePath}`;
+
+    return result;
 };

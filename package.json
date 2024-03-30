@@ -2,6 +2,7 @@
   "name": "twig-link-resolver",
   "displayName": "Twig link resolver",
   "description": "Allows you to open twig files by clicking on the generated links",
+  "categories": ["Other"],
   "author": "Chaxwell",
   "license": "MIT-X11",
   "version": "1.0.2",
@@ -23,7 +24,8 @@
         "twigLinkResolver.templatesRootPath": {
           "type": "string",
           "description": "The relative path to your twig templates folder",
-          "default": "templates"
+          "default": "templates",
+          "deprecationMessage": "Deprecated: Will be removed in the next version, please make sure to move your root path to the loaderPaths array"
         },
         "twigLinkResolver.languageFilter": {
           "type": "array",
@@ -37,6 +39,22 @@
             "type": "string"
           },
           "uniqueItems": true
+        },
+        "twigLinkResolver.loaderPaths": {
+          "type": "object",
+          "description": "Allows you to specify multiple paths to your twig templates. Add an alias (eg. @App) bounded to a path (eg. src/AppBundle/Resources/views)",
+          "default": {
+            "": "templates"
+          },
+          "required": [
+            ""
+          ],
+          "patternProperties": {
+            ".*": {
+              "type": "string"
+            }
+          },
+          "propertyNames": true
         }
       }
     }

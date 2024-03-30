@@ -9,6 +9,15 @@ const getConfiguration = () => {
         workspacePath: vscode.workspace.workspaceFolders[0]?.uri.fsPath ?? "",
         templatesRootPath: resolver.get('templatesRootPath'),
         languageFilter: resolver.get('languageFilter'),
+        loaderPaths: Object
+            .entries(resolver.get('loaderPaths'))
+            .sort(([namespaceA], [namespaceB]) => namespaceB.length - namespaceA.length)
+            .map(([namespace, folderPath]) => {
+            return {
+                namespace,
+                folderPath
+            };
+        }),
     };
     return config;
 };
