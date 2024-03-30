@@ -5,7 +5,7 @@
   "categories": ["Other"],
   "author": "Chaxwell",
   "license": "MIT-X11",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "./out/extension",
   "private": true,
   "repository": {
