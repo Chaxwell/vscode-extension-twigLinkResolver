@@ -24,7 +24,7 @@ export const loadDisposables = (context: vscode.ExtensionContext) => {
  * @private
  */
 export const documentLinkProvider = (document: vscode.TextDocument, token: vscode.CancellationToken) => {
-    const regex = new RegExp(/.*?['"](.+?\.twig)['"]/, 'gi');
+    const regex = new RegExp(/[^'"]+\.twig/, 'gi');
     const links: vscode.DocumentLink[] = [];
 
     for (let n = 0; n < document.lineCount; n++) {
@@ -35,21 +35,17 @@ export const documentLinkProvider = (document: vscode.TextDocument, token: vscod
             continue;
         }
 
-        let contentVisited: string = "";
         matches.forEach(match => {
-            const wholeMatch = match[0];
-            contentVisited += wholeMatch;
-
-            const groupMatch = match[1];
-            const startPosition = contentVisited.lastIndexOf(groupMatch);
-            const endPosition = startPosition + groupMatch.length;
+            const theMatch = match[0];
+            const startPosition = line.text.lastIndexOf(theMatch);
+            const endPosition = startPosition + theMatch.length;
 
             const range = new vscode.Range(
                 new vscode.Position(line.lineNumber, startPosition),
                 new vscode.Position(line.lineNumber, endPosition)
             );
 
-            const uri = vscode.Uri.file(resolveFile(groupMatch));
+            const uri = vscode.Uri.file(resolveFile(theMatch));
             const link = new vscode.DocumentLink(
                 range,
                 uri
