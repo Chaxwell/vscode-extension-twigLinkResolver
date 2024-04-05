@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/Chaxwell/vscode-extension-twigLinkResolver/compare/v1.0.3...v1.0.4) (2024-04-05)
+
+
+### Bug Fixes
+
+* was matching false positives in one line condition ([f22ed79](https://github.com/Chaxwell/vscode-extension-twigLinkResolver/commit/f22ed7930e33bb83bae23dc1b8494ba3485921e1))
+
 ## [1.0.3](https://github.com/Chaxwell/vscode-extension-twigLinkResolver/compare/v1.0.2...v1.0.3) (2024-03-30)
 
 
