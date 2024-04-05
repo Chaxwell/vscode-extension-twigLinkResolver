@@ -7,7 +7,7 @@
   ],
   "author": "Chaxwell",
   "license": "MIT-X11",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "./out/extension",
   "private": true,
   "repository": {
