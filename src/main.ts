@@ -66,7 +66,7 @@ export const resolveFile = (filePath: string): string => {
     filePath = filePath.replace(/\//g, path.sep);
 
     const matchExactNamespace = (filePath: string, nsLength: number, namespace: string) => {
-        return filePath.slice(0, nsLength + 1) === namespace + '/'
+        return filePath.slice(0, nsLength + 1) === namespace + path.sep;
     }
 
     for (const {namespace, folderPath} of configuration.loaderPaths) {
