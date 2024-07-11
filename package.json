@@ -2,6 +2,7 @@
   "name": "twig-link-resolver",
   "displayName": "Twig link resolver",
   "description": "Allows you to open twig files by clicking on the generated links",
+  "icon": "resources/twigLinkResolver.png",
   "categories": [
     "Other"
   ],
