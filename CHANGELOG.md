@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.5](https://github.com/Chaxwell/vscode-extension-twigLinkResolver/compare/v1.0.4...v1.0.5) (2024-07-11)
+
+
+### Bug Fixes
+
+* [#12](https://github.com/Chaxwell/vscode-extension-twigLinkResolver/issues/12) use system separator ([ddfdace](https://github.com/Chaxwell/vscode-extension-twigLinkResolver/commit/ddfdace54a7ac441f80082564d804e3ece5bdc68))
+
 ## [1.0.4](https://github.com/Chaxwell/vscode-extension-twigLinkResolver/compare/v1.0.3...v1.0.4) (2024-04-05)
 
 
