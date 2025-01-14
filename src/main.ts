@@ -45,7 +45,8 @@ export const documentLinkProvider = (document: vscode.TextDocument, token: vscod
                 new vscode.Position(line.lineNumber, endPosition)
             );
 
-            const uri = vscode.Uri.file(resolveFile(theMatch));
+            const file = path.normalize(resolveFile(theMatch));
+            const uri = vscode.Uri.file(file);
             const link = new vscode.DocumentLink(
                 range,
                 uri
@@ -89,5 +90,5 @@ export const resolveFile = (filePath: string): string => {
     result += `${configuration.templatesRootPath}/`;
     result += `${filePath}`;
 
-    return result;
+    return path.normalize(result);
 };
