@@ -63,7 +63,7 @@ export const documentLinkProvider = (document: vscode.TextDocument, token: vscod
  */
 export const resolveFile = (filePath: string): string => {
     const configuration = getConfiguration();
-    filePath = filePath.replace(/\//g, path.sep);
+    filePath = standardizePath(filePath);
 
     const matchExactNamespace = (filePath: string, nsLength: number, namespace: string) => {
         return filePath.slice(0, nsLength + 1) === namespace + path.sep;
@@ -73,7 +73,7 @@ export const resolveFile = (filePath: string): string => {
         const nsLength = namespace.length;
 
         if (nsLength === 0) {
-            return `${configuration.workspacePath}${path.sep}${folderPath}${path.sep}${filePath}`;
+            return standardizePath(`${configuration.workspacePath}/${folderPath}/${filePath}`);
         }
 
         if (! matchExactNamespace(filePath, nsLength, namespace)) {
@@ -82,12 +82,16 @@ export const resolveFile = (filePath: string): string => {
 
         const filePathToResolve = filePath.replace(`${namespace}`, folderPath);
 
-        return `${configuration.workspacePath}${path.sep}${filePathToResolve}`;
+        return standardizePath(`${configuration.workspacePath}/${filePathToResolve}`);
     }
 
-    let result = `${configuration.workspacePath}${path.sep}`;
-    result += `${configuration.templatesRootPath}${path.sep}`;
+    let result = `${configuration.workspacePath}/`;
+    result += `${configuration.templatesRootPath}/`;
     result += `${filePath}`;
 
     return result;
 };
+
+const standardizePath = (filePath: string): string => {
+    return filePath.replace(/\//g, path.sep);
+}
