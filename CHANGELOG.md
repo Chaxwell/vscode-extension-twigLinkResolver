@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.6](https://github.com/Chaxwell/vscode-extension-twigLinkResolver/compare/v1.0.5...v1.0.6) (2025-01-15)
+
+
+### Bug Fixes
+
+* normalize paths ([#15](https://github.com/Chaxwell/vscode-extension-twigLinkResolver/issues/15)) ([dda38e9](https://github.com/Chaxwell/vscode-extension-twigLinkResolver/commit/dda38e9bb028b09ae449717534f71793b829db5f))
+
 ## [1.0.5](https://github.com/Chaxwell/vscode-extension-twigLinkResolver/compare/v1.0.4...v1.0.5) (2024-07-11)
 
 
