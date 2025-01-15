@@ -45,7 +45,8 @@ export const documentLinkProvider = (document: vscode.TextDocument, token: vscod
                 new vscode.Position(line.lineNumber, endPosition)
             );
 
-            const uri = vscode.Uri.file(resolveFile(theMatch));
+            const file = path.normalize(resolveFile(theMatch));
+            const uri = vscode.Uri.file(file);
             const link = new vscode.DocumentLink(
                 range,
                 uri
@@ -63,7 +64,7 @@ export const documentLinkProvider = (document: vscode.TextDocument, token: vscod
  */
 export const resolveFile = (filePath: string): string => {
     const configuration = getConfiguration();
-    filePath = filePath.replace(/\//g, path.sep);
+    filePath = path.normalize(filePath);
 
     const matchExactNamespace = (filePath: string, nsLength: number, namespace: string) => {
         return filePath.slice(0, nsLength + 1) === namespace + path.sep;
@@ -73,7 +74,7 @@ export const resolveFile = (filePath: string): string => {
         const nsLength = namespace.length;
 
         if (nsLength === 0) {
-            return `${configuration.workspacePath}${path.sep}${folderPath}${path.sep}${filePath}`;
+            return path.normalize(`${configuration.workspacePath}/${folderPath}/${filePath}`);
         }
 
         if (! matchExactNamespace(filePath, nsLength, namespace)) {
@@ -82,12 +83,12 @@ export const resolveFile = (filePath: string): string => {
 
         const filePathToResolve = filePath.replace(`${namespace}`, folderPath);
 
-        return `${configuration.workspacePath}${path.sep}${filePathToResolve}`;
+        return path.normalize(`${configuration.workspacePath}/${filePathToResolve}`);
     }
 
-    let result = `${configuration.workspacePath}${path.sep}`;
-    result += `${configuration.templatesRootPath}${path.sep}`;
+    let result = `${configuration.workspacePath}/`;
+    result += `${configuration.templatesRootPath}/`;
     result += `${filePath}`;
 
-    return result;
+    return path.normalize(result);
 };
